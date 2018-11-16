@@ -90,14 +90,22 @@ var mainArr = [
     }
 ];
 
+
 for (i=0; i < mainArr.length; i++) {
-$("#trivia").append("<p>" + mainArr[i].question + "</p>")
-}
+    $("#trivia").append("<br> <p>" + mainArr[i].question + "</p>", 
+    '<form action="/action_page.php"></form>', '<input type="radio" name="gender" value="male">' + " " + mainArr[i].options[0] + '<br>', '<input type="radio" name="gender" value="male">' + " " + mainArr[i].options[1] + '<br>', '<input type="radio" name="gender" value="male">' + " " + mainArr[i].options[2] + '<br>', '<input type="radio" name="gender" value="male">' + " " + mainArr[i].options[3] + '<br>')
+    };
+
 
 var testing = ["loverly", "and then", "keep going"];
 console.log(testing[2]); //keep going
 console.log(mainArr[7].answer); //The Jetsons
 
+
+/* <input type="radio" name="gender" value="male"> Male<br>
+<input type="radio" name="gender" value="female"> Female<br>
+<input type="radio" name="gender" value="other"> Other<br>  
+<input type="submit" value="Submit"> */
 
 // ### Option One: Basic Quiz (Timed Form)
 // ![Basic](Images/1-basic.jpg)
