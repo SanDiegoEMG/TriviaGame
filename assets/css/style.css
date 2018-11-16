@@ -1,6 +1,19 @@
-container-fluid {
-    margin: 20pt;
-    padding: 20pt;
+
+
+.timerwords {
+    color: white;
+}
+
+#timernumbers {
+    color: white;
+}
+
+h1 {
+    padding: 15pt 20pt 0 20pt;
+}
+
+h3 {
+    padding: 0 20pt 0 20pt;
 }
 
 .affix {
@@ -11,9 +24,4 @@ container-fluid {
 
 .affix + .container-fluid {
     padding-top: 70px;
-}
-
-.timerwords {
-    color: white;
-    size: 26pt;
 }
