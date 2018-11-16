@@ -1,137 +1,154 @@
 //timer pulled from onnline credit:  https://codepen.io/TLJens/pen/azedap
-var interval;
-
-function countdown() {
-    clearInterval(interval);
-    interval = setInterval(function () {
-        var timer = $('.js-timeout').html();
-        timer = timer.split(':');
-        var minutes = timer[0];
-        var seconds = timer[1];
-        seconds -= 1;
-        if (minutes < 0) return;
-        else if (seconds < 0 && minutes != 0) {
-            minutes -= 1;
-            seconds = 59;
-        }
-        else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
-        $('.js-timeout').html(minutes + ':' + seconds);
-        if (minutes == 0 && seconds == 0) clearInterval(interval);
-    }, 1000);
-}
 
 
-$(document).ready(function(){
-// buttons to start and stop timer
-$('#js-startTimer').click(function () {
-    console.log("start clicked");
-    $('.js-timeout').text("1:00");
-    countdown();
-    $('#js-startTimer').hide();
-});
 
-$('#js-resetTimer').click(function () {
-    console.log("reset clicked");
-    $('.js-timeout').text("1:00");
-    clearInterval(interval);
-    $('#js-startTimer').show();
-});
-});
+$(document).ready(function () {
+    // buttons to start and stop timer
+    $('#js-startTimer').click(function () {
+        console.log("start clicked");
+        $('.js-timeout').text("1:00");
+        countdown();
+        $('#js-startTimer').hide();
+    });
 
-var correct = 0;
-var incorrect = 0;
-var unanswered = 0;
+    $('#js-resetTimer').click(function () {
+        console.log("reset clicked");
+        $('.js-timeout').text("1:00");
+        clearInterval(interval);
+        $('#js-startTimer').show();
+        $("#trivia").hide();
+        getAnswers();
+    });
 
-var Score = function() {
-   // if return from radio choice === answer from array, correct++;
-   // if return from radio choice === answer from array, incorrect++;
-   // if no return from radio choice = unanswered++;
-}
 
-var mainArr = [
-    {
-        name: "zero",
-        question: 'Sticks and stones will break your bones but ______ will never hurt you.',
-        options: ['bats', 'people', 'words', 'looks'],
-        answer: "words"
-    },
-    {
-        name: "one",
-        question: "How long is the great wall of China?",
-        options: ["1500 miles", "1000 miles", "5000 miles", "500 miles"],
-        answer: "1500 miles"
-    },
-    {
-        name: "two",
-        question: "Why did Superman's parents send him to Earth?",
-        options: ["to find his siblings", "to save planet Earth", "because his home was about to explode", "his people were starving"],
-        answer: "because his home was about to explore"
-    },
-    {
-        
-        name: "three",
-        question: "How many innings are in a regulation MLB game?",
-        options: ["7", "11", "9", "8"],
-        answer: "9"
-    },
-    {
-        name: "four",
-        question: "What is Tony Hawk best known for?",
-        options: ["BMX biking", "skateboarding", "base jumping", "long distance running"],
-        answer: "skateboarding"
-    },
-    {
-        name: "five",
-        question: "Which continent contains the most countries?",
-        options: ["Asia", "Africa", "Europe", "South America"],
-        answer: "Africa"
-    },
-    {
-        name: "six",
-        question: "What is the diameter of a regulation hockey puck?",
-        options: ['2.5 inches"', '3 inches', "3.25 inches", "2 inches"],
-        answer: "3 inches"
-    },
-    {
-        name: "seven",
-        question: "What cartoon featured a dog named Astro?",
-        options: ["The Flinstones", "The Jetsons", "He-Man", "Rainbow Brite"],
-        answer: "The Jetsons"
-    },
-    {
-        name: "eight",
-        question: "What equipment is needed to play the game Craps?",
-        options: ["dice", "playing cards", "roulette wheel", "pen and paper"],
-        answer: "dice"
-    },
-    {
-        name: "nine",
-        question: "What is the biggest animal in the world?",
-        options: ["elephant", "great white shark", "rhinoceros", "blue whale"],
-        answer: "blue whale"
+    var interval;
+
+    function countdown() {
+        clearInterval(interval);
+        interval = setInterval(function () {
+            var timer = $('.js-timeout').html();
+            timer = timer.split(':');
+            var minutes = timer[0];
+            var seconds = timer[1];
+            seconds -= 1;
+            if (minutes < 0) return;
+            else if (seconds < 0 && minutes != 0) {
+                minutes -= 1;
+                seconds = 59;
+            }
+            else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
+            $('.js-timeout').html(minutes + ':' + seconds);
+            if (minutes == 0 && seconds == 0) clearInterval(interval);
+        }, 1000);
     }
-];
 
+    var getAnswers = function () {
+        event.preventDefault();
 
-for (i=0; i < mainArr.length; i++) {
-    $("#trivia").append("<br> <p>" + mainArr[i].question + "</p>", 
-    '<form action="/action_page.php"></form>', 
-    '<input type="radio" name=' + mainArr[i].name + " value=" + mainArr[i].options[0] + ">" + " " + mainArr[i].options[0] + '<br>', 
-    '<input type="radio" name=' + mainArr[i].name + " value=" + mainArr[i].options[1] + ">" + " " + mainArr[i].options[1] + '<br>', 
-    '<input type="radio" name=' + mainArr[i].name + " value=" + mainArr[i].options[2] + ">" + " " + mainArr[i].options[2] + '<br>', 
-    '<input type="radio" name=' + mainArr[i].name + " value=" + mainArr[i].options[3] + ">" + " " + mainArr[i].options[3] + '<br>') 
+        for (var i = 0; i < mainArr.length; i++) {
+            var answer = $(".qq" + i + ":checked").val();
+            if (answer === undefined) {
+                unanswered++;
+                console.log(unanswered + " unanswered")
+            } else {
+                if (answer === mainArr[i].answer) {
+                    correct++;
+                    console.log(correct + " correct");
+                }
+                else {
+                    incorrect++;
+                    console.log(incorrect + " incorrect")
+                }
+            }
+        }
     };
 
 
-console.log(mainArr[7].answer); //The Jetsons
+    var correct = 0;
+    var incorrect = 0;
+    var unanswered = 0;
+    var q = "q";
 
-// From W3Schools - append multiple items at one time
-// $("#btn2").click(function(){
-//     $("ol").append("<li>Appended item</li>","<li>Appended item2</li>", "<li>Appended item3</li>");
-// });
 
-//
+    var mainArr = [
+        {
+            name: "zero",
+            question: 'Sticks and stones will break your bones but ______ will never hurt you.',
+            options: ['bats', 'people', 'words', 'looks'],
+            answer: "words"
+        },
+        {
+            name: "one",
+            question: "How long is the great wall of China?",
+            options: ["1500 miles", "1000 miles", "5000 miles", "500 miles"],
+            answer: "1500 miles"
+        },
+        {
+            name: "two",
+            question: "Why did Superman's parents send him to Earth?",
+            options: ["to find his siblings", "to save planet Earth", "because his home was about to explode", "his people were starving"],
+            answer: "because his home was about to explore"
+        },
+        {
 
+            name: "three",
+            question: "How many innings are in a regulation MLB game?",
+            options: ["7", "11", "9", "8"],
+            answer: "9"
+        },
+        {
+            name: "four",
+            question: "What is Tony Hawk best known for?",
+            options: ["BMX biking", "skateboarding", "base jumping", "long distance running"],
+            answer: "skateboarding"
+        },
+        {
+            name: "five",
+            question: "Which continent contains the most countries?",
+            options: ["Asia", "Africa", "Europe", "South America"],
+            answer: "Africa"
+        },
+        {
+            name: "six",
+            question: "What is the diameter of a regulation hockey puck?",
+            options: ['2.5 inches', '3 inches', "3.25 inches", "2 inches"],
+            answer: "3 inches"
+        },
+        {
+            name: "seven",
+            question: "What cartoon featured a dog named Astro?",
+            options: ["The Flinstones", "The Jetsons", "He-Man", "Rainbow Brite"],
+            answer: "The Jetsons"
+        },
+        {
+            name: "eight",
+            question: "What equipment is needed to play the game Craps?",
+            options: ["dice", "playing cards", "roulette wheel", "pen and paper"],
+            answer: "dice"
+        },
+        {
+            name: "nine",
+            question: "What is the biggest animal in the world?",
+            options: ["elephant", "great white shark", "rhinoceros", "blue whale"],
+            answer: "blue whale"
+        }
+    ]
+
+ 
+
+    for (i = 0; i < mainArr.length; i++) {
+        $("#trivia").append("<br> <p>" + mainArr[i].question + "</p>",
+            '<input type="radio" name=' + mainArr[i].name + ' class=q' + q + i + " value=" + mainArr[i].options[0] + ">  " + mainArr[i].options[0] + '<br>',
+            '<input type="radio" name=' + mainArr[i].name + ' class=q' + q + i + " value=" + mainArr[i].options[1] + ">  " + mainArr[i].options[1] + '<br>',
+            '<input type="radio" name=' + mainArr[i].name + ' class=q' + q + i + " value=" + mainArr[i].options[2] + ">  " + mainArr[i].options[2] + '<br>',
+            '<input type="radio" name=' + mainArr[i].name + ' class=q' + q + i + " value=" + mainArr[i].options[3] + ">  " + mainArr[i].options[3] + '<br>')
+        console.log(q + [i]);
+        console.log(mainArr[i]);
+    };
+
+    console.log(mainArr[7].answer); //The Jetsons
+
+});
 
 // ### Option One: Basic Quiz (Timed Form)
 // ![Basic](Images/1-basic.jpg)
