@@ -25,3 +25,21 @@ h3 {
 .affix + .container-fluid {
     padding-top: 70px;
 }
+
+.stylegood {
+    text-align: center;
+}
+
+#js-startTimer {
+    background-color: yellow;
+}
+
+li {
+    padding: 5pt;
+    margin: 5pt;
+}
+
+#js-resetTimer {
+    bottom: 0;
+    float: left;
+}
