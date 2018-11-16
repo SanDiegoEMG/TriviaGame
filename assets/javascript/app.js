@@ -3,12 +3,15 @@
 
 
 $(document).ready(function () {
+
+
     // buttons to start and stop timer
     $('#js-startTimer').click(function () {
         console.log("start clicked");
         $('.js-timeout').text("1:00");
         countdown();
         $('#js-startTimer').hide();
+        $("#endofgame").hide();
     });
 
     $('#js-resetTimer').click(function () {
@@ -18,6 +21,9 @@ $(document).ready(function () {
         $('#js-startTimer').show();
         $("#trivia").hide();
         getAnswers();
+        showScores();
+        $(this).hide();
+   
     });
 
 
@@ -46,7 +52,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         for (var i = 0; i < mainArr.length; i++) {
-            var answer = $(".qq" + i + ":checked").val();
+            var answer = $(".q" + i + ":checked").val();
             if (answer === undefined) {
                 unanswered++;
                 console.log(unanswered + " unanswered")
@@ -63,6 +69,12 @@ $(document).ready(function () {
         }
     };
 
+    showScores = function(){
+        $("#endofgame").show();
+        $("#corrects").append(correct);
+        $("#incorrects").append(incorrect);
+        $("#unanswereds").append(unanswered);
+    };
 
     var correct = 0;
     var incorrect = 0;
@@ -138,15 +150,14 @@ $(document).ready(function () {
 
     for (i = 0; i < mainArr.length; i++) {
         $("#trivia").append("<br> <p>" + mainArr[i].question + "</p>",
-            '<input type="radio" name=' + mainArr[i].name + ' class=q' + q + i + " value=" + mainArr[i].options[0] + ">  " + mainArr[i].options[0] + '<br>',
-            '<input type="radio" name=' + mainArr[i].name + ' class=q' + q + i + " value=" + mainArr[i].options[1] + ">  " + mainArr[i].options[1] + '<br>',
-            '<input type="radio" name=' + mainArr[i].name + ' class=q' + q + i + " value=" + mainArr[i].options[2] + ">  " + mainArr[i].options[2] + '<br>',
-            '<input type="radio" name=' + mainArr[i].name + ' class=q' + q + i + " value=" + mainArr[i].options[3] + ">  " + mainArr[i].options[3] + '<br>')
+            '<input type="radio" name=' + mainArr[i].name + ' class=' + q + i + " value=" + mainArr[i].options[0] + ">  " + mainArr[i].options[0] + '<br>',
+            '<input type="radio" name=' + mainArr[i].name + ' class=' + q + i + " value=" + mainArr[i].options[1] + ">  " + mainArr[i].options[1] + '<br>',
+            '<input type="radio" name=' + mainArr[i].name + ' class=' + q + i + " value=" + mainArr[i].options[2] + ">  " + mainArr[i].options[2] + '<br>',
+            '<input type="radio" name=' + mainArr[i].name + ' class=' + q + i + " value=" + mainArr[i].options[3] + ">  " + mainArr[i].options[3] + '<br>')
         console.log(q + [i]);
         console.log(mainArr[i]);
     };
 
-    console.log(mainArr[7].answer); //The Jetsons
 
 });
 
