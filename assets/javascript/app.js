@@ -12,6 +12,7 @@ $(document).ready(function () {
         countdown();
         $('#js-startTimer').hide();
         $("#endofgame").hide();
+        $("#trivia").show();
     });
 
     $('#js-resetTimer').click(function () {
@@ -23,7 +24,6 @@ $(document).ready(function () {
         getAnswers();
         showScores();
         $(this).hide();
-   
     });
 
 
@@ -161,8 +161,7 @@ $(document).ready(function () {
 
 });
 
-// ### Option One: Basic Quiz (Timed Form)
-// ![Basic](Images/1-basic.jpg)
+// ### Instructions for Timed Form
 
 // **[Click Here to Watch the Demo](https://youtu.be/fBIj8YsA9dk)**.
 
