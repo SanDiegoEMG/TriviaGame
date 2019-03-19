@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
   $("#trivia").hide();
-  $("#js-resetTimer").hide();
+  $("#quizEndButton").hide();
   $("#endofgame").hide();
 
   // buttons to start and stop timer
@@ -13,11 +13,11 @@ $(document).ready(function() {
     $("#js-startTimer").hide();
     $("#endofgame").hide();
     $("#trivia").show();
-    $("#js-resetTimer").show();
+    $("#quizEndButton").show();
     reset();
   });
 
-  $("#js-resetTimer").click(function() {
+  $("#quizEndButton").click(function() {
     console.log("reset clicked");
     $(".js-timeout").text("1:00");
     clearInterval(interval);
@@ -41,7 +41,9 @@ $(document).ready(function() {
     for (i = 0; i < mainArr.length; i++) {
       $(".q" + i).prop("checked", false);
     }
-
+    $("#corrects").empty();
+    $("#incorrects").empty();
+    $("#unanswereds").empty();
   }
 
   $('input[name="correctAnswer"]').prop("checked", false);
@@ -66,21 +68,32 @@ $(document).ready(function() {
 
   var getAnswers = function() {
     event.preventDefault();
-
     for (var i = 0; i < mainArr.length; i++) {
-      var answer = $(".q" + i + ":checked").val();
-      if (answer === undefined) {
+      var response = $(".q" + i + ":checked").val();
+
+      if (response === mainArr[i].answer) {
+        console.log(mainArr[i].name + " .q" + i + " response is: " + response);
+        correct++;
+        console.log(".q" + i + " is correct");
+        console.log(typeof(response))
+
+      } else if (response === undefined) {
+        console.log(mainArr[i].name + " .q" + i + " response is: " + response);
         unanswered++;
-        console.log(unanswered + " unanswered");
-      } else {
-        if (answer === mainArr[i].answer) {
-          correct++;
-          console.log(correct + " correct");
-        } else {
-          incorrect++;
-          console.log(incorrect + " incorrect");
-        }
+        console.log("q" + i + " is unanswered");
+        console.log(typeof(response))
+
+      } else if (response) {
+        console.log(mainArr[i].name + " .q" + i + " response is: " + response);
+        console.log("q" + i + " is last else if");
+        incorrect++;
       }
+
+      else {
+        console.log("q" + i + " is default else");
+        console.log(mainArr[i].name + " .q" + i +  " response is: " + response);
+
+      } 
     }
   };
 
@@ -101,20 +114,15 @@ $(document).ready(function() {
     },
     {
       name: "one",
-      question: "How long is the great wall of China?",
-      options: ["1500 miles", "1000 miles", "5000 miles", "500 miles"],
-      answer: "1500 miles"
+      question: "How many miles long is the great wall of China?",
+      options: ["1500", "1000", "5000", "500"],
+      answer: "1500"
     },
     {
       name: "two",
-      question: "Why did Superman's parents send him to Earth?",
-      options: [
-        "to find his siblings",
-        "to save planet Earth",
-        "because his home was about to explode",
-        "his people were starving"
-      ],
-      answer: "because his home was about to explore"
+      question: "What is the only 'nut' which grows underground?",
+      options: [ "peanut", "cashew", "almond", "walnut"],
+      answer: "peanut"
     },
     {
       name: "three",
@@ -141,15 +149,15 @@ $(document).ready(function() {
     },
     {
       name: "six",
-      question: "What is the diameter of a regulation hockey puck?",
-      options: ["2.5 inches", "3 inches", "3.25 inches", "2 inches"],
-      answer: "3 inches"
+      question: "What is the diameter - in inches - of a regulation hockey puck?",
+      options: ["2.5", "3", "3.25", "2"],
+      answer: "3"
     },
     {
       name: "seven",
       question: "What cartoon featured a dog named Astro?",
-      options: ["The Flinstones", "The Jetsons", "He-Man", "Rainbow Brite"],
-      answer: "The Jetsons"
+      options: ["Flinstones", "Jetsons", "He-Man", "Rainbow Brite"],
+      answer: "Jetsons"
     },
     {
       name: "eight",
@@ -159,13 +167,15 @@ $(document).ready(function() {
     },
     {
       name: "nine",
-      question: "What is the biggest animal in the world?",
-      options: ["elephant", "great white shark", "rhinoceros", "blue whale"],
-      answer: "blue whale"
+      question: "What is the heaviest land animal in the world?",
+      options: ["elephant", "giraffe", "rhinoceros", "bison"],
+      answer: "elephant"
     }
   ];
 
-  for (i = 0; i < mainArr.length; i++) {
+  console.log("answer to q1 = " + mainArr[1].answer)
+
+  for (var i = 0; i < mainArr.length; i++) {
     $("#trivia").append(
       "<br> <p>" + mainArr[i].question + "</p>",
       '<input type="radio" name=' +
@@ -209,8 +219,8 @@ $(document).ready(function() {
         mainArr[i].options[3] +
         "<br>"
     );
-    console.log(q + [i]);
-    console.log(mainArr[i]);
+    // console.log(q + [i]);
+    // console.log(mainArr[i]);
   }
 });
 
