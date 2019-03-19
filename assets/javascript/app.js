@@ -6,7 +6,7 @@ $(document).ready(function() {
   $("#endofgame").hide();
 
   // buttons to start and stop timer
-  $("#js-startTimer").click(function() {
+  $(".startTimer").click(function() {
     console.log("start clicked");
     $(".js-timeout").text("1:00");
     countdown();
@@ -41,6 +41,7 @@ $(document).ready(function() {
     for (i = 0; i < mainArr.length; i++) {
       $(".q" + i).prop("checked", false);
     }
+
   }
 
   $('input[name="correctAnswer"]').prop("checked", false);
@@ -85,9 +86,9 @@ $(document).ready(function() {
 
   showScores = function() {
     $("#endofgame").show();
-    $("#corrects").append(correct);
-    $("#incorrects").append(incorrect);
-    $("#unanswereds").append(unanswered);
+    $("#corrects").append(" " + correct);
+    $("#incorrects").append(" " + incorrect);
+    $("#unanswereds").append(" " + unanswered);
   };
 
   var mainArr = [

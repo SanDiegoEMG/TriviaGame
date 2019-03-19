@@ -3,73 +3,92 @@
 
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Trivia Game</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Link to my CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-    <style>
+    <style></style>
+  </head>
 
-    </style>
-</head>
-
-<body>
-
-    <div id="header" class="container-fluid" style="background-color:#F44336;color:#fff;">
-        <h1>Mind Bending Trivia Randomness</h1>
-        <h3>Can you get 10 of 10?</h3>
+  <body>
+    <div
+      id="header"
+      class="container-fluid"
+      style="background-color:#F44336;color:#fff;"
+    >
+      <h1>Mind Bending Trivia Randomness</h1>
+      <h3>Can you get 10 of 10?</h3>
     </div>
 
-    <nav class="navbar navbar-inverse stylegood" data-spy="affix" data-offset-top="197">
-        <ul class="nav navbar-nav" style="text-align: center">
-            <li class="active">
-                <p class="timerwords">Time Left</p>
-            </li>
-            <li>
-                <p class="js-timeout" id="timernumbers">1:00</p>
-            </li>
-            <li><button type="button" class="btn btn-secondary" id="js-startTimer"> Start Trivia</button></li>
-        </ul>
+    <nav
+      class="navbar navbar-inverse stylegood"
+      data-spy="affix"
+      data-offset-top="197"
+    >
+      <ul class="nav navbar-nav" style="text-align: center">
+        <li class="active">
+          <p class="timerwords">Time Left</p>
+        </li>
+        <li>
+          <p class="js-timeout" id="timernumbers">1:00</p>
+        </li>
+        <li>
+          <button type="button" class="btn btn-secondary startTimer" id="js-startTimer">
+            Start Trivia
+          </button>
+        </li>
+      </ul>
     </nav>
 
     <section class="container-fluid">
-        <p id="trivia"></p>
+      <div class="card card-text" id="trivia"></div>
     </section>
 
     <section class="container">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-4">
-                <button class="btn-block btn-dark" id="js-resetTimer">All Done! Click here to see how you did.</button>
-                <div class="col-md-6"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="endofgame" class="row">
+      <div class="row">
         <div class="col-md-2"></div>
-        <div class="col-md-2">
-            <h2 id="corrects">Correct Answers: </h2>
-            <h2 id="incorrects">Incorrect Answers: </h2>
-            <h2 id="unanswereds">Unanswered Questions: </h2>
+        <div class="col-md-4">
+          <button class="btn-block btn-dark" id="js-resetTimer">
+            All Done! Click here to see how you did.
+          </button>
+          <div class="col-md-6"></div>
         </div>
+      </div>
     </section>
 
+    <section id="endofgame" class="container container-fluid">
+      <div class="col-md-2"></div>
+      <div class="col-md-6">
+          <h2 id="corrects">Correct Answers:</h2>
+          <h2 id="incorrects">Incorrect Answers:</h2>
+          <h2 id="unanswereds">Unanswered Questions:</h2>
+          <br />
+          <button type="button" class="btn btn-danger btn-lg startTimer">
+              Play Again!
+            </button>
+      </div>
+    </section>
 
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
     <!-- Link to my .js-->
     <script src="assets/javascript/app.js"></script>
-</body>
-
+  </body>
 </html>
